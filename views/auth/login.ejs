@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <main>
+        <section class="form-card">
+            <h2><%=insideHeading%></h2>
+            <form action="/login" method="POST" >
+                <%- include('../partials/errors') %>
+                <input type="email" name="email" placeholder="test@abc.com"  value="<%= oldInput.email ? oldInput.email : '' %>" required="true">
+                <input type="password" name="password" placeholder="Enter your Password" required="true">
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

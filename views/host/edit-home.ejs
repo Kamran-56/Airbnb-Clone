@@ -1,0 +1,21 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <main>
+        <section class="form-card">
+            <h2><%=insideHeading%></h2>
+            <form action="/host/<%= editing ? "edit-home" : "add-home" %>" method="POST" >
+                <input type="hidden" name="homeID" value="<%= editing ? home._id : '' %>" >
+                <input type="text" name="houseName" placeholder="House name" value="<%= editing ? home.houseName : '' %>" required>
+                <input type="text" name="location" placeholder="Location" value="<%= editing ? home.location : '' %>" required>
+                <input type="number" name="price" placeholder="Price per night (USD)" value="<%= editing ? home.price : '' %>" required min="0" step="0.01">
+                <input type="number" name="rating" placeholder="Rating (0–5)" value="<%= editing ? home.rating : '' %>" required min="0" max="5" step="0.5">
+                <input type="url" name="photoUrl" placeholder="Photo URL" value="<%= editing ? home.photoUrl : '' %>" required>
+                <textarea placeholder="Add description" style="height: 10vh; width: auto;" name="description"><%= editing ? home.description : '' %></textarea>
+                <button type="submit"><%= editing ? "Update" : "Add" %> Home</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

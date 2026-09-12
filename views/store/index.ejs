@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+
+    <%- include('../partials/nav') %>
+
+    <main>
+        <h1 class="page-heading">Welcome to Airbnb</h1>
+        <section class="form-card">
+            <ul class="home-list">
+                <% if (!registeredHomes || registeredHomes.length === 0) { %>
+                    <li class="empty">No homes are registered yet.</li>
+                <% } else { %>
+                    <% (registeredHomes || []).forEach(function(home) { %>
+                        <% if (!home) { return; } %>
+                        <li class="home-card">
+                            <div class="card-media">
+                                <img src="<%= (home && home.photoUrl) || 'https://via.placeholder.com/560x350?text=No+Photo' %>" alt="<%= (home && home.houseName) || 'Home' %>">
+                            </div>
+        
+                            <div class="card-content">
+                                <h3><%= home.houseName %></h3>
+                                <div class="card-meta">
+                                    <span class="location"><strong>Location:</strong> <%= home.location %></span>
+                                    <span class="price">$<%= home.price %> / night</span>
+                                </div>
+                                <p class="rating">Rating: <strong><%= home.rating %> / 5</strong></p>
+                            </div>
+                            <div class="book-btn">
+                                <button>Book Now</button>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </section>
+        
+    </main>
+
+</body>
+</html>

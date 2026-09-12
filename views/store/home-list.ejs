@@ -1,0 +1,56 @@
+<%- include('../partials/head') %>
+    </head>
+
+    <body>
+
+        <%- include('../partials/nav') %>
+
+            <main>
+                <h1 class="page-heading">Homes List</h1>
+                <section class="form-card">
+                    <h2>Here are our registered homes</h2>
+                    <ul class="home-list">
+                        <% if (registeredHomes.length===0) { %>
+                            <li class="empty">No homes are registered yet.</li>
+                            <% } else { %>
+                                <% registeredHomes.forEach(home=> { %>
+                                    <li class="home-card">
+                                        <div class="card-media">
+                                            <img src="<%= home.photoUrl || 'https://via.placeholder.com/560x350?text=No+Photo' %>"
+                                                alt="<%= home.houseName %>">
+                                        </div>
+                                        <div class="card-content">
+                                            <h3>
+                                                <%= home.houseName %>
+                                            </h3>
+                                            <div class="card-meta">
+                                                <span class="location"><strong>Location:</strong>
+                                                    <%= home.location %>
+                                                </span>
+                                                <span class="price">$<%= home.price %> / night</span>
+                                            </div>
+                                            <p class="rating">Rating: <strong>
+                                                    <%= home.rating %> / 5
+                                                </strong></p>
+                                        </div>
+                                        <div class="option-btns">
+                                            
+                                            <div class="fav-btn">
+                                         <%- include('../partials/favourites', { home: home }) %>
+                                            </div>
+                                            <div class="details-btn">
+                                                <a href="/homes/<%= home._id %>"><button class="home-action-btns">View Details</button></a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <% }); %>
+                                        <% } %>
+                    </ul>
+                </section>
+
+            </main>
+
+    </body>
+
+    </html>

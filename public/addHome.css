@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full page styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #a52a2a; /* red tone */
+    height: 100vh;
+}
+
+/* Header - top + center */
+header {
+    text-align: center;
+    padding-top: 30px;
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+}
+
+/* Center content below */
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+

@@ -1,0 +1,235 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fb;
+    color: #222;
+    min-height: 100vh;
+    align-items: center;
+}
+
+header.site-header {
+    background-color: #ff5a5f;
+    color: #fff;
+    padding: 16px 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+header.site-header .brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+header.site-header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+}
+
+header.site-header a,
+header.site-header form button {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+header.site-header form {
+    display: flex;
+    align-items: center;
+}
+.navOptions {
+    padding : 0.25em;
+    display: flex;
+    gap: 6vw;
+}
+
+
+header.site-header a:hover,
+header.site-header form button:hover,
+header.site-header a.active,
+header.site-header form button.active {
+    background-color: rgba(255,255,255,0.18);
+}
+
+main {
+    width: min(92%, 920px);
+    margin: 24px auto 40px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    letter-spacing: 0.03em;
+}
+
+.home-list {
+    list-style: none;
+    display: grid;
+    gap: 18px;
+    padding: 0;
+}
+
+.home-list li {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    font-size: 1rem;
+}
+
+.home-card {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) 1fr;
+    gap: 18px;
+    align-items: stretch;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.card-meta {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+.card-meta .price {
+    font-weight: 700;
+    color: #111827;
+}
+
+.rating {
+    color: #0f172a;
+    font-size: 0.98rem;
+}
+
+.home-list li.empty {
+    text-align: center;
+    color: #64748b;
+}
+
+.form-card,
+.message-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.form-card h2,
+.message-card h2 {
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+}
+
+.form-card form {
+    display: grid;
+    gap: 14px;
+}
+
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="url"],
+.form-card input[type="password"] {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 1rem;
+}
+
+.form-card button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f2937;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+
+ .book-btn button {
+    background-color: rgb(34, 139, 34);
+ }
+
+ .fav-btn button {
+    background-color: rgb(255, 23, 81);
+ }
+
+
+.details-btn button {
+    background-color: rgb(30, 144, 255);
+}
+
+.home-action-btns{
+    width: 8rem;
+    height: 2.8rem;
+    background-color: cornflowerblue;
+}
+
+.option-btns{
+    display: flex;
+    gap: 8rem;
+}
+
+.form-card button:hover,
+.button:hover {
+    background-color: #111827;
+    transform: translateY(-1px);
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+

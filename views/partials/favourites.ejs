@@ -1,0 +1,10 @@
+<form action="/fav-list" method="POST">
+                        <button class="home-action-btns">
+                            Add To Favorites
+                        </button>
+                        <input type="hidden" name="id" value="<%= home._id %>">
+                        </form>
+
+ <!-- MongoDB's _id is normally stored as an ObjectId type internally, but:
+ When EJS renders this, home._id gets converted to its string representation (e.g. "64fa3e2b9c8a1f0012345678") because HTML attributes can only hold strings.
+So by the time it reaches req.body.id, it's a simple string — not an ObjectId. -->

@@ -1,0 +1,45 @@
+.message-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.message-card h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ff5a5f;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+}
+
+.message-card p {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    background-color: #ff5a5f;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 90, 95, 0.3);
+}
+
+.button:hover {
+    background-color: #e0484d;
+    box-shadow: 0 6px 16px rgba(255, 90, 95, 0.4);
+}

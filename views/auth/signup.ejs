@@ -1,0 +1,24 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <main>
+        <section class="form-card">
+            <h2><%=insideHeading%></h2>
+            <form action="/signup" method="POST" >
+                <%- include('../partials/errors') %>
+                <input type="text" name="firstName" placeholder="First name" value="<%= oldInput.firstName ? oldInput.firstName : '' %>" required="true">
+                <input type="text" name="lastName" placeholder="Last name"  value="<%= oldInput.lastName ? oldInput.lastName : ''%>" >
+                <input type="email" name="email" placeholder="enter email for eg: test123@abc.com" value="<%= oldInput.email ? oldInput.email : '' %>" required="true">
+                <input type="password" name="password" placeholder="Enter your Password"  required="true">
+                <input type="password" name="confirmPassword" placeholder="Confirm your Password" required="true">
+                <p>User Type:</p>
+                <label><input type="radio" name="userType" value="guest" id="guest" <%= oldInput.userType === 'guest' ? 'checked' : ''%>><span> Guest</span></label>
+                <label><input type="radio" name="userType" value="host" id="host" <%= oldInput.userType === 'host' ? 'checked' : ''%>><span> Host</span></label>
+                <label><input type="checkbox" name="terms" value="agree" id="terms" required="true"><span> I agree to the terms and conditions</span></label>
+                <button type="submit">Signup</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

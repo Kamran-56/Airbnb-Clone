@@ -1,0 +1,84 @@
+<header class="site-header">
+
+    <nav>
+        <div class="navOptions">
+
+            <% if (isLoggedIn) { %>
+
+                <% if (userType === 'guest') { %>
+
+                    <a href="/index"
+                       class="<%= activePage === 'index' ? 'active' : '' %>">
+                        airbnb
+                    </a>
+
+                    <a href="/home-list"
+                       class="<%= activePage === 'home-list' ? 'active' : '' %>">
+                        Home-List
+                    </a>
+
+                    <a href="/bookings"
+                       class="<%= activePage === 'bookings' ? 'active' : '' %>">
+                        Bookings
+                    </a>
+
+                    <a href="/fav-list"
+                       class="<%= activePage === 'fav-list' ? 'active' : '' %>">
+                        Favorites
+                    </a>
+
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+
+                <% } else { %>
+
+                    <a href="/index"
+                       class="<%= activePage === 'index' ? 'active' : '' %>">
+                        airbnb
+                    </a>
+
+                    <a href="/reserve"
+                       class="<%= activePage === 'reserve' ? 'active' : '' %>">
+                        Reservations
+                    </a>
+
+                    <a href="/host/host-homes"
+                       class="<%= activePage === 'host-home-list' ? 'active' : '' %>">
+                        Host Homes
+                    </a>
+
+                    <a href="/host/add-home"
+                       class="<%= activePage === 'add-home' ? 'active' : '' %>">
+                        Add Home
+                    </a>
+
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+
+                <% } %>
+
+            <% } else { %>
+
+                <a href="/index"
+                   class="<%= activePage === 'index' ? 'active' : '' %>">
+                    airbnb
+                </a>
+
+                <a href="/login"
+                   class="<%= activePage === 'login' ? 'active' : '' %>">
+                    Login
+                </a>
+
+                <a href="/signup"
+                   class="<%= activePage === 'signup' ? 'active' : '' %>">
+                    SignUp
+                </a>
+
+            <% } %>
+
+        </div>
+    </nav>
+
+</header>

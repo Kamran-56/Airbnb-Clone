@@ -1,0 +1,60 @@
+<%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <%- include('../partials/nav') %>
+
+    <main>
+        <section class="form-card">
+
+            <h2>Home Details</h2>
+
+            <div class="home-card">
+
+                <div class="card-media">
+                    <img 
+                        src="<%= home.photoUrl || 'https://via.placeholder.com/560x350?text=No+Photo' %>"
+                        alt="<%= home.houseName %>"
+                    >
+                </div>
+
+                <div class="card-content">
+
+                    <h3><%= home.houseName %></h3>
+
+                    <div class="card-meta">
+
+                        <span class="location">
+                            <strong>Location:</strong>
+                            <%= home.location %>
+                        </span>
+
+                        <span class="price">
+                            $<%= home.price %> / night
+                        </span>
+
+                    </div>
+
+                    <p class="rating">
+                        Rating:
+                        <strong><%= home.rating %> / 5</strong>
+                    </p>
+
+                </div>
+
+                <div class="option-btns">
+
+                    <div class="fav-btn">
+                        <%- include('../partials/favourites') %> 
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
