@@ -1,0 +1,61 @@
+.message-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px 24px;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 40px auto;
+    animation: slideInUp 0.3s ease-out;
+}
+
+.message-card h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5a5f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+}
+
+.message-card p {
+    font-size: 1.05rem;
+    color: #666;
+    margin-bottom: 28px;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5a5f 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

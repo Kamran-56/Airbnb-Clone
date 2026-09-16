@@ -1,4 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+const rootDir = require('../utils/pathUtil');
+
 const Home = require("../models/home");
+
 
 const getAddHome = (req, res, next) => {
     
@@ -41,37 +46,86 @@ const getEditHome = (req, res, next) => {
 }
 
 
+// const postAddHome = (req, res, next) => {
+//     console.log("BODY: ", req.body, req.body.houseName);
+//     console.log("FILE", req.file);
+// if (!req.file) {
+//     console.log("No file uploaded");
+//     return res.status(422).send("No file uploaded");
+// }
+
+//     const {
+//         houseName,
+//         price,
+//         location,
+//         rating,
+//         description
+//     } = req.body;
+
+//     const photo = req.files.photo[0];
+//     const houseRules = req.files.houseRules[0];
+    
+
+//     const home = new Home({
+//     houseName,
+//     price,
+//     location,
+//     rating,
+//     photo: photo.path,
+//     houseRules: houseRules.path,
+//     description
+// });
+
+//     home.save()
+//         .then(() => {
+//             console.log("Home added successfully");
+            
+//             res.redirect('/host/host-homes');
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         });
+// };
 const postAddHome = (req, res, next) => {
-    console.log("home registration successful for: ", req.body, req.body.houseName);
+
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
+
     const {
         houseName,
         price,
         location,
         rating,
-        photoUrl,
         description
     } = req.body;
+
+    const photo = req.files.photo
+        ? req.files.photo[0].path
+        : null;
+
+    const houseRules = req.files.houseRules
+        ? req.files.houseRules[0].path
+        : null;
 
     const home = new Home({
         houseName,
         price,
         location,
         rating,
-        photoUrl,
+        photo,
+        houseRules,
         description
     });
 
     home.save()
         .then(() => {
             console.log("Home added successfully");
-            
             res.redirect('/host/host-homes');
         })
         .catch(err => {
             console.log(err);
         });
 };
-
 
 const postEditHome = (req, res, next) => {
     const {
@@ -80,38 +134,84 @@ const postEditHome = (req, res, next) => {
         price,
         location,
         rating,
-        photoUrl,
         description
     } = req.body;
 
-// Go to the database, grab the actual home document that already exists, then change its fields one by one, then save it back."
-// Here, home is not something you built — it's the real document Mongoose fetched for you. Because Mongoose already knows this document exists (it has a real _id 
-// from the database), when you call home.save(), Mongoose automatically knows: "this already exists, so update it." You didn't have to write that check yourself.
-// This is more like: "Go to the database, grab the actual home document that already exists, then change its fields one by one, then save it back."
-// Here, home is not something you built — it's the real document Mongoose fetched for you. Because Mongoose already knows this document exists (it has a real _id from the database), 
-// when you call home.save(), Mongoose automatically knows: "this already exists, so update it." You didn't have to write that check yourself.
-    Home.findById(homeID).then((home) => {
-        home.houseName = houseName;
-        home.price = price;
-        home.location = location;
-        home.rating = rating;
-        home.photoUrl = photoUrl;
-        home.description = description;
+    // Home.findById(homeID)
+    //     .then((home) => {
 
-        home.save()
-    .then((result) => {
-        console.log("Home updated successfully", result);
-        res.redirect('/host/host-homes');   // now runs only after save completes
-    })
-    .catch(err => {
-        console.log("Error while updating home", err);
-        res.redirect('/host/host-homes'); // optional: still redirect, or show error page
-    });
-    }).catch(err => {
-        console.log("Error while finding home for editing", err);
-    });
+    //         if (!home) {
+    //             return res.redirect('/host/host-homes');
+    //         }
+
+    //         home.houseName = houseName;
+    //         home.price = price;
+    //         home.location = location;
+    //         home.rating = rating;
+    //         home.description = description;
+
+    //         if (req.files.photo) {
+    //             home.photo = req.files.photo[0].path;
+    //         }
+
+    //         if (req.files.houseRules) {
+    //             home.houseRules = req.files.houseRules[0].path;
+    //         }
+
+    //         return home.save();
+        Home.findById(homeID)
+        .then((home) => {
+
+            if (!home) {
+                return res.redirect('/host/host-homes');
+            }
+
+            // If a new photo was uploaded, delete the old photo
+            if (req.files.photo) {
+
+                if (home.photo) {
+                    const oldPhotoPath = path.join(rootDir, home.photo);
+
+                    fs.unlink(oldPhotoPath, (err) => {
+                        if (err) {
+                            console.log("Error deleting old photo:", err);
+                        } else {
+                            console.log("Old photo deleted");
+                        }
+                    });
+                }
+
+                home.photo = req.files.photo[0].path;
+            }
+
+            // If a new house-rules PDF was uploaded, delete the old PDF
+            if (req.files.houseRules) {
+
+                if (home.houseRules) {
+                    const oldRulesPath = path.join(rootDir, home.houseRules);
+
+                    fs.unlink(oldRulesPath, (err) => {
+                        if (err) {
+                            console.log("Error deleting old house rules:", err);
+                        } else {
+                            console.log("Old house rules deleted");
+                        }
+                    });
+                }
+
+                home.houseRules = req.files.houseRules[0].path;
+            }
+            return home.save();
+        })
+        .then(() => {
+            console.log("Home updated successfully");
+            res.redirect('/host/host-homes');
+        })
+        .catch(err => {
+            console.log("Error while updating home", err);
+            res.redirect('/host/host-homes');
+        });
 };
-
 
 
 

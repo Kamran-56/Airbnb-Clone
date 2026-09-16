@@ -1,0 +1,40 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <main>
+        <section class="form-card">
+            <h2><%=insideHeading%></h2>
+            <form action="/signup" method="POST" >
+                <%- include('../partials/errors') %>
+                <input type="text" name="firstName" placeholder="First name" value="<%= oldInput.firstName ? oldInput.firstName : '' %>" required>
+                <input type="text" name="lastName" placeholder="Last name" value="<%= oldInput.lastName ? oldInput.lastName : ''%>">
+                <input type="email" name="email" placeholder="enter email for eg: test123@abc.com" value="<%= oldInput.email ? oldInput.email : '' %>" required>
+                <input type="password" name="password" placeholder="Enter your Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm your Password" required>
+                
+                <div class="role-options">
+                    <p>Choose Your Role:</p>
+                    <label class="role-option">
+                        <input type="radio" name="userType" value="guest" <%= oldInput.userType === 'guest' ? 'checked' : ''%>>
+                        <span>Guest - I want to book homes</span>
+                    </label>
+                    <label class="role-option">
+                        <input type="radio" name="userType" value="host" <%= oldInput.userType === 'host' ? 'checked' : ''%>>
+                        <span>Host - I want to list my home</span>
+                    </label>
+                </div>
+                
+                <label class="role-option">
+                    <input type="checkbox" name="terms" value="agree" required>
+                    <span>I agree to the terms and conditions</span>
+                </label>
+                <button type="submit">Create Account</button>
+            </form>
+            <p class="link-section">
+                Already have an account? <a href="/login" class="link-text">Login here</a>
+            </p>
+        </section>
+    </main>
+</body>
+</html>

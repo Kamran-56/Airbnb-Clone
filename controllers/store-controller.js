@@ -1,5 +1,8 @@
 const Home = require("../models/home");
 const User = require("../models/user");
+const path = require("path");
+const rootDir = require("../utils/pathUtil");
+
 
 const getHomes = (req, res, next) => {
     Home.find().then(registeredHomes => {
@@ -125,7 +128,54 @@ exports.getHomeDetails = (req, res, next) => {
     });
 }
 
+exports.getHouseRules = [
+    (req, res, next) => {
+        if (!req.isLoggedIn) {
+            return res.redirect('/login');
+        }
+        next();
+    },
 
+    (req, res, next) => {
+
+        const homeId = req.params.homeId;
+
+        Home.findById(homeId)
+            .then(home => {
+
+                if (!home) {
+                    return res.redirect('/home-list');
+                }
+
+                if (!home.houseRules) {
+                    return res.send('House rules are not available.');
+                }
+
+                const filePath = path.join(rootDir, home.houseRules);
+
+                res.sendFile(filePath);
+            })
+            .catch(err => {
+                console.log('Error finding house rules:', err);
+                res.redirect('/home-list');
+            });
+    }
+];
+// User clicks View House Rules
+//              ↓
+// GET /house-rules/:homeID
+//              ↓
+// Is user logged in?
+//        ↓             ↓
+//       NO             YES
+//        ↓              ↓
+//    /login       getHouseRules
+//                       ↓
+//                 Find Home
+//                       ↓
+//               Get houseRules path
+//                       ↓
+//                  Send PDF
 
 exports.getHomes = getHomes;
 exports.getBookings = getBookings;

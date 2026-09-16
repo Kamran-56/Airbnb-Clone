@@ -1,0 +1,45 @@
+<%- include('../partials/head') %>
+    </head>
+
+    <body>
+
+        <%- include('../partials/nav') %>
+
+            <main>
+
+                <h1 class="page-heading">My Favorite Homes</h1>
+
+                <section class="form-card">
+
+                    <ul class="home-list">
+                        <% if (favHomes.length===0) { %>
+                            <li class="empty">Your favorite homes will appear here. <a href="/home-list" class="button mt-2">Explore Homes</a></li>
+                            <% } else { %>
+                                 <% favHomes.forEach((home) => { %>
+                                    <li class="home-card">
+                                        <div class="card-media">
+                                            <img src="<%= home.photo || 'https://via.placeholder.com/560x350?text=No+Photo' %>"
+                                                alt="<%= home.houseName %>">
+                                        </div>
+                                        <div class="card-content">
+                                            <h3><%= home.houseName %></h3>
+                                            <div class="card-meta">
+                                                <span class="location"><%= home.location %></span>
+                                                <span class="price">$<%= home.price %>/night</span>
+                                            </div>
+                                            <p class="rating"><%= home.rating %> / 5</p>
+                                        </div>
+                                        <form action="/fav-list/delete/<%= home._id %>" method="POST">
+                                            <button type="submit" class="button btn-fav mt-2">Remove from Favorites</button>
+                                        </form>
+                                    </li>
+                                    <% }); %>
+                                        <% } %>
+                    </ul>
+                </section>
+
+            </main>
+
+    </body>
+
+    </html>

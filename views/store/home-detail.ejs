@@ -1,0 +1,52 @@
+<%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <%- include('../partials/nav') %>
+
+    <main>
+        <section class="form-card">
+
+            <h2>Home Details</h2>
+
+            <div class="home-detail-card">
+
+                <div class="detail-media">
+                    <img 
+                        src="<%= home.photo %>"
+                        alt="<%= home.houseName %>"
+                    >
+                </div>
+
+                <div class="card-content">
+
+                    <h3><%= home.houseName %></h3>
+
+                    <div class="detail-meta">
+
+                        <span class="location"><%= home.location %></span>
+                        <span class="price">$<%= home.price %> / night</span>
+
+                    </div>
+
+                    <p class="rating"><%= home.rating %> / 5</p>
+                    
+                    <div class="action-btns">
+                        <span class="house-rules">
+                            <a href="/house-rules/<%=home._id%>" class="button">View House Rules</a>
+                        </span>
+                        <div class="fav-btn">
+                            <%- include('../partials/favourites') %> 
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

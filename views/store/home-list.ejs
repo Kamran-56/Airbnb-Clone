@@ -1,0 +1,49 @@
+<%- include('../partials/head') %>
+    </head>
+
+    <body>
+
+        <%- include('../partials/nav') %>
+
+            <main>
+                <h1 class="page-heading">Explore Homes</h1>
+                <section class="form-card">
+                    <h2>Discover Our Premium Listings</h2>
+                    <ul class="home-list">
+                        <% if (registeredHomes.length===0) { %>
+                            <li class="empty">No homes registered yet. Check back soon!</li>
+                            <% } else { %>
+                                <% registeredHomes.forEach(home=> { %>
+                                    <li class="home-card">
+                                        <div class="card-media">
+                                            <img src="<%= home.photo || 'https://via.placeholder.com/560x350?text=No+Photo' %>"
+                                                alt="<%= home.houseName %>">
+                                        </div>
+                                        <div class="card-content">
+                                            <h3><%= home.houseName %></h3>
+                                            <div class="card-meta">
+                                                <span class="location"><%= home.location %></span>
+                                                <span class="price">$<%= home.price %>/night</span>
+                                            </div>
+                                            <p class="rating"><%= home.rating %> / 5</p>
+                                        </div>
+                                        <div class="option-btns">
+                                            <div class="fav-btn">
+                                         <%- include('../partials/favourites', { home: home }) %>
+                                            </div>
+                                            <div class="details-btn">
+                                                <a href="/homes/<%= home._id %>" class="button">View Details</a>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <% }); %>
+                                        <% } %>
+                    </ul>
+                </section>
+
+            </main>
+
+    </body>
+
+    </html>

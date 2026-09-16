@@ -1,0 +1,65 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+
+    <%- include('../partials/nav') %>
+
+    <main>
+        <h1 class="page-heading">Discover Stunning Homes</h1>
+        <section class="form-card">
+            <ul class="home-list">
+                <% if (!registeredHomes || registeredHomes.length === 0) { %>
+                    <% const dummyOffers = [
+                        { _id: 'd1', houseName: 'Cozy Loft', location: 'Downtown', price: 99, rating: 4.5, photo: 'https://via.placeholder.com/560x350?text=Cozy+Loft' },
+                        { _id: 'd2', houseName: 'Beachside Bungalow', location: 'Seaside', price: 149, rating: 4.8, photo: 'https://via.placeholder.com/560x350?text=Beachside+Bungalow' },
+                        { _id: 'd3', houseName: 'Mountain Cabin', location: 'Highlands', price: 129, rating: 4.7, photo: 'https://via.placeholder.com/560x350?text=Mountain+Cabin' }
+                    ]; %>
+
+                    <% dummyOffers.forEach(function(home) { %>
+                        <li class="home-card">
+                            <div class="card-media">
+                                <img src="<%= home.photo %>" alt="<%= home.houseName %>">
+                            </div>
+
+                            <div class="card-content">
+                                <h3><%= home.houseName %></h3>
+                                <div class="card-meta">
+                                    <span class="location"><%= home.location %></span>
+                                    <span class="price">$<%= home.price %>/night</span>
+                                </div>
+                                <p class="rating"><%= home.rating %> / 5</p>
+                            </div>
+                            <div class="book-btn">
+                                <button onclick="window.location.href='#'">Book Now</button>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <% (registeredHomes || []).forEach(function(home) { %>
+                        <% if (!home) { return; } %>
+                        <li class="home-card">
+                            <div class="card-media">
+                                <img src="<%= (home && home.photo) || 'https://via.placeholder.com/560x350?text=No+Photo' %>" alt="<%= (home && home.houseName) || 'Home' %>">
+                            </div>
+        
+                            <div class="card-content">
+                                <h3><%= home.houseName %></h3>
+                                <div class="card-meta">
+                                    <span class="location"><%= home.location %></span>
+                                    <span class="price">$<%= home.price %>/night</span>
+                                </div>
+                                <p class="rating"><%= home.rating %> / 5</p>
+                            </div>
+                            <div class="book-btn">
+                                <button onclick="window.location.href='/homes/<%=home._id%>'">Book Now</button>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </section>
+        
+    </main>
+
+</body>
+</html>

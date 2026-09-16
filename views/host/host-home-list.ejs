@@ -1,0 +1,44 @@
+<%- include('../partials/head') %>
+</head>
+<body>
+
+    <%- include('../partials/nav') %>
+
+    <main>
+        <h1 class="page-title">Welcome, Host!</h1>
+        <section class="form-card">
+            <h2>Your Listed Homes</h2>
+            <ul class="home-list">
+                <% if (registeredHomes.length === 0) { %>
+                    <li class="empty">No homes registered yet. <a href="/host/add-home" class="button mt-2">Add Your First Home</a></li>
+                <% } else { %>
+                    <% registeredHomes.forEach(home => { %>
+                        <li class="home-card">
+                            <div class="card-media">
+                                <img src="<%= home.photo || 'https://via.placeholder.com/560x350?text=No+Photo' %>" alt="<%= home.houseName %>">
+                            </div>
+                            <div class="card-content">
+                                <h3><%= home.houseName %></h3>
+                                <div class="card-meta">
+                                    <span class="location"><strong><%= home.location %></strong></span>
+                                    <span class="price">$<%= home.price %>/night</span>
+                                </div>
+                                <p class="rating"><strong><%= home.rating %> / 5</strong></p>
+                            </div>
+                            
+                            <div class="edit-btn">
+                                <a href="/host/edit-home/<%=home._id%>?editing=true">Edit</a>
+                                <form action="/host/delete-home/<%=home._id%>" method="POST" class="delete-form">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    <% }); %>
+                <% } %>
+            </ul>
+        </section>
+        
+    </main>
+
+</body>
+</html>

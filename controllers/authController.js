@@ -153,20 +153,6 @@ exports.postSignup = [
             });
         });
                 
-
-
-        // const user = new User({firstName, lastName, email, password, userType});
-        // user.save().then(() => {
-        //     res.redirect('/login');
-        // }).catch(err => {
-        //     return res.status(422).render('auth/signup', {
-        //     pageTitle: 'SignUp',
-        //     activePage: 'signup',
-        //     insideHeading: 'Signup to your account',
-        //     isLoggedIn: false,
-        //     errors: [err.message],
-        //     oldInput: {firstName, lastName, email, password, userType}
-        // })});
 }];
 
 

@@ -1,0 +1,79 @@
+<header class="site-header">
+    <a class="brand" href="/">
+        <span class="brand-logo" aria-hidden="true">
+            <!-- simple house SVG -->
+            <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                <path fill="#ff5a5f" d="M12 3.3l8 6.4V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1V9.7l8-6.4z"/>
+            </svg>
+        </span>
+        <span class="brand-text">AIRBNB</span>
+    </a>
+    <nav>
+        <div class="navOptions">
+
+            <% if (isLoggedIn) { %>
+
+                <% if (userType === 'guest') { %>
+
+                    <a href="/home-list"
+                       class="<%= activePage === 'home-list' ? 'active' : '' %>">
+                        Homes
+                    </a>
+
+                    <a href="/bookings"
+                       class="<%= activePage === 'bookings' ? 'active' : '' %>">
+                        Bookings
+                    </a>
+
+                    <a href="/fav-list"
+                       class="<%= activePage === 'fav-list' ? 'active' : '' %>">
+                        Favorites
+                    </a>
+
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+
+                <% } else { %>
+
+                    <a href="/reserve"
+                       class="<%= activePage === 'reserve' ? 'active' : '' %>">
+                        Reservations
+                    </a>
+
+                    <a href="/host/host-homes"
+                       class="<%= activePage === 'host-home-list' ? 'active' : '' %>">
+                        My Homes
+                    </a>
+
+                    <a href="/host/add-home"
+                       class="<%= activePage === 'add-home' ? 'active' : '' %>">
+                        Add Home
+                    </a>
+
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+
+                <% } %>
+
+            <% } else { %>
+
+                <a href="/" class="<%= activePage === 'index' ? 'active' : '' %>">Home</a>
+
+                <a href="/login"
+                   class="<%= activePage === 'login' ? 'active' : '' %>">
+                    Login
+                </a>
+
+                <a href="/signup"
+                   class="<%= activePage === 'signup' ? 'active' : '' %>">
+                    Sign Up
+                </a>
+
+            <% } %>
+
+        </div>
+    </nav>
+
+</header>
