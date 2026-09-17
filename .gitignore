@@ -1,0 +1,8 @@
+node_modules/
+notes.txt
+UI_ENHANCEMENTS.md
+.env
+.DS_Store
+npm-debug.log
+.vscode/
+.idea/
