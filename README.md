@@ -1,6 +1,6 @@
 # Airbnb Clone
 
-A full-stack Airbnb-style web application built with **Node.js, Express.js, MongoDB, Mongoose, and EJS**. The project allows users to browse homes, view details, create accounts, manage listings, upload property images and house-rules PDFs, add homes to favourites, and make reservations.
+A full-stack Airbnb-style web application built with **Node.js, Express.js, MongoDB, Mongoose, and EJS**. The project allows users to add homes , browse homes, view details, create accounts, manage listings, upload property images and house-rules PDFs, add homes to favourites, make reservations, add and delete homes.
 
 ## Features
 
@@ -24,6 +24,7 @@ A full-stack Airbnb-style web application built with **Node.js, Express.js, Mong
 - Upload house-rules PDF files
 - View listed homes
 - Edit existing home details
+- delete existing home
 - Update uploaded images and house-rules files
 
 ### File Uploads
