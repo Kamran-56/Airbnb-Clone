@@ -244,4 +244,4 @@ GitHub: https://github.com/Kamran-56
 
 ## License
 
-This project is intended for educational and development purposes.
+Note: This project is intended for educational and development purposes. It is not a pure clone of Airbnb; rather, it was developed as a project-based learning exercise to gain practical experience with various web development technologies and concepts.
