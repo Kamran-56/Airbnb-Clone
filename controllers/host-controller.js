@@ -3,6 +3,8 @@ const path = require('path');
 const rootDir = require('../utils/pathUtil');
 
 const Home = require("../models/home");
+// Import User model to remove deleted home from all users' favorites
+const User = require("../models/user");
 
 
 const getAddHome = (req, res, next) => {
@@ -165,6 +167,11 @@ const postEditHome = (req, res, next) => {
             if (!home) {
                 return res.redirect('/host/host-homes');
             }
+            home.houseName = houseName;
+            home.price = price;
+            home.location = location;
+            home.rating = rating;
+            home.description = description;
 
             // If a new photo was uploaded, delete the old photo
             if (req.files.photo) {
@@ -251,7 +258,16 @@ exports.postDeleteHome = (req, res, next) => {
 
             return Home.deleteOne({ _id: homeId })
                 .then(() => {
-                    console.log("Home deleted successfully");
+                    // FIXED: Remove deleted home from all users' favorites array
+                    // This uses updateMany to find all users who have this homeId in their favourites
+                    // and removes it from their array using the $pull operator
+                    return User.updateMany(
+                        { favourites: homeId },
+                        { $pull: { favourites: homeId } }
+                    );
+                })
+                .then(() => {
+                    console.log("Home deleted successfully and removed from all users' favorites");
                     res.redirect("/host/host-homes");
                 });
         })
